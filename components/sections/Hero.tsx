@@ -29,7 +29,7 @@ export function Hero() {
             {site.valueProposition}
           </p>
           <p className="sr-only">{headlineText()}</p>
-          <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-muted">
+          <p className="mt-4 max-w-xl text-pretty font-mono text-[0.68rem] uppercase leading-relaxed tracking-[0.14em] text-muted sm:text-xs sm:tracking-[0.18em]">
             {roleLine()}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

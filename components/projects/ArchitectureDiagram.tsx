@@ -119,7 +119,7 @@ export function ArchitectureDiagram({ source }: { source: string }) {
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-hidden="true"
-        className="max-w-none"
+        className="h-auto max-w-full"
       >
         <defs>
           <marker id="arch-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">

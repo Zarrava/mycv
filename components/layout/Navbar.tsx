@@ -40,9 +40,9 @@ export function Navbar() {
         className="shell flex h-[var(--header)] items-center justify-between gap-3"
         inert={open ? true : undefined}
       >
-        <a href={pathname === "/" ? "#content" : "/"} className="flex min-h-11 items-center gap-3" aria-label={`${site.name}, home`}>
-          <Avatar className="size-10" />
-          <span className="hidden font-display text-sm font-medium tracking-tight sm:block">
+        <a href={pathname === "/" ? "#content" : "/"} className="flex min-h-11 min-w-0 items-center gap-3" aria-label={`${site.name}, home`}>
+          <Avatar className="size-10 shrink-0" />
+          <span className="hidden min-w-0 truncate font-display text-sm font-medium tracking-tight sm:block">
             {site.name}
           </span>
         </a>
@@ -75,14 +75,14 @@ export function Navbar() {
           </div>
           <a
             href={pathname === "/" ? "#contact" : "/#contact"}
-            className="inline-flex min-h-11 items-center rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground"
+            className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-full bg-primary px-3 text-sm font-semibold text-primary-foreground sm:px-4"
           >
             Hire me
           </a>
           <button
             type="button"
             id={menuButtonRef}
-            className="inline-flex size-11 items-center justify-center rounded-full border border-border lg:hidden"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-border lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}

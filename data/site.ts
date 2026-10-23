@@ -26,6 +26,8 @@ export const site = {
   },
   valueProposition:
     "Over four years designing GenAI pipelines, LangChain agents, vector search, and FastAPI and Flask services that other people can run.",
+  seoDescription:
+    "Elijah Olojede is an AI Native Developer in Lagos. He builds LangChain agents, RAG systems, and production Python services.",
   availabilityLabel: "Remote experience",
 
   bio: [
@@ -111,11 +113,16 @@ export function roleLine() {
   return site.roles.join(" · ");
 }
 
+function siteOrigin() {
+  const configured = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (configured) return configured.replace(/\/$/, "");
+  const production = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (production) return `https://${production.replace(/^https?:\/\//, "").replace(/\/$/, "")}`;
+  return "http://localhost:3000";
+}
+
 export function absoluteUrl(path = "/") {
-  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(
-    /\/$/,
-    "",
-  );
+  const base = siteOrigin();
   if (path.startsWith("http")) return path;
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }

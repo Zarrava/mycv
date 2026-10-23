@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { SkipLink } from "@/components/layout/SkipLink";
-import { personJsonLd, rootMetadata } from "@/lib/metadata";
+import { personJsonLd, rootMetadata, websiteJsonLd } from "@/lib/metadata";
 import "@/styles/globals.css";
 
 const sans = Inter({
@@ -60,6 +60,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(personJsonLd()).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd()).replace(/</g, "\\u003c"),
           }}
         />
         <SpeedInsights />

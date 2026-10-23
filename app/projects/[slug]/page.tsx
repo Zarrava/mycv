@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { projects } from "@/data/projects";
 import { getAdjacentProjects, getProject } from "@/lib/projects";
-import { projectMetadata } from "@/lib/metadata";
+import { breadcrumbJsonLd, projectMetadata } from "@/lib/metadata";
 import { Badge, StatusBadge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { CaseStudySection, projectImages } from "@/components/projects/CaseStudySection";
@@ -39,8 +39,20 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
   const { previous, next } = getAdjacentProjects(slug);
 
+  const breadcrumb = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Projects", path: "/#projects" },
+    { name: project.title, path: `/projects/${project.slug}` },
+  ]);
+
   return (
     <article className="shell py-10 sm:py-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumb).replace(/</g, "\\u003c"),
+        }}
+      />
       <nav aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-2 text-sm text-muted">
           <li>

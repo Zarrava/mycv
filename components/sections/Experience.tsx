@@ -26,8 +26,10 @@ export function Experience() {
               <Reveal delay={index * 0.05}>
                 <article className="surface p-6 sm:p-7">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <h3 className="font-display text-2xl tracking-tight">{role.title}</h3>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-xl leading-snug tracking-tight text-balance sm:text-2xl">
+                        {role.title}
+                      </h3>
                       <p className="mt-1 text-muted">
                         {role.company}
                         <span className="text-border" aria-hidden="true">

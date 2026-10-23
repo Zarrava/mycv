@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { experience } from "@/data/experience";
-import { headlineText, roleLine, site, absoluteUrl } from "@/data/site";
+import { site, absoluteUrl } from "@/data/site";
 import type { Project } from "@/data/projects";
 
-const description = `${site.name}, ${roleLine()}. ${site.valueProposition}`;
+const description = site.seoDescription;
 
 export function rootMetadata(): Metadata {
   const title = `${site.name} · ${site.roles[0]}`;
@@ -19,6 +19,7 @@ export function rootMetadata(): Metadata {
     creator: site.name,
     keywords: [
       "AI Native Developer",
+      "Elijah Olojede",
       "AI engineer",
       "GenAI",
       "LLM",
@@ -26,23 +27,38 @@ export function rootMetadata(): Metadata {
       "LangChain",
       "FastAPI",
       "Python",
+      "Lagos",
       "voice AI",
     ],
     alternates: { canonical: absoluteUrl("/") },
+    icons: {
+      icon: [{ url: "/favicon.png", sizes: "512x512", type: "image/png" }],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    },
     openGraph: {
       type: "website",
       url: absoluteUrl("/"),
       title,
       description,
       siteName: site.name,
-      locale: "en_US",
+      locale: "en_NG",
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
   };
 }
 
@@ -78,8 +94,9 @@ export function personJsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: site.name,
-    jobTitle: roleLine(),
-    description: headlineText(),
+    jobTitle: site.roles[0],
+    description: site.seoDescription,
+    hasOccupation: site.roles.map((name) => ({ "@type": "Occupation", name })),
     email: site.email,
     telephone: site.phone,
     url: absoluteUrl("/"),
@@ -111,5 +128,34 @@ export function personJsonLd() {
       "Whisper",
     ],
     sameAs,
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: absoluteUrl("/"),
+    name: `${site.name} · ${site.roles[0]}`,
+    description: site.seoDescription,
+    inLanguage: "en",
+    mainEntity: {
+      "@type": "Person",
+      name: site.name,
+      jobTitle: site.roles[0],
+    },
+  };
+}
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
   };
 }
