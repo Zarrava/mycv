@@ -1,5 +1,5 @@
 import { ArrowDownRight, Download } from "lucide-react";
-import { headlineText, roleLine, site } from "@/data/site";
+import { headlineText, roleLine, site, valueProposition } from "@/data/site";
 import { SocialLinks } from "@/components/layout/SocialLinks";
 import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
@@ -26,7 +26,7 @@ export function Hero() {
             <span className="text-gradient">{site.headline.accent}</span>
           </p>
           <p className="mt-4 max-w-xl text-pretty text-[length:var(--text-lead)] leading-relaxed text-muted">
-            {site.valueProposition}
+            {valueProposition()}
           </p>
           <p className="sr-only">{headlineText()}</p>
           <p className="mt-4 max-w-xl text-pretty font-mono text-[0.68rem] uppercase leading-relaxed tracking-[0.14em] text-muted sm:text-xs sm:tracking-[0.18em]">

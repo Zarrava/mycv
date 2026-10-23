@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { experience } from "@/data/experience";
-import { site, absoluteUrl } from "@/data/site";
+import { site, absoluteUrl, seoDescription } from "@/data/site";
 import type { Project } from "@/data/projects";
 
-const description = site.seoDescription;
-
 export function rootMetadata(): Metadata {
+  const description = seoDescription();
   const title = `${site.name} · ${site.roles[0]}`;
   return {
     metadataBase: new URL(absoluteUrl("/")),
@@ -95,7 +94,7 @@ export function personJsonLd() {
     "@type": "Person",
     name: site.name,
     jobTitle: site.roles[0],
-    description: site.seoDescription,
+    description: seoDescription(),
     hasOccupation: site.roles.map((name) => ({ "@type": "Occupation", name })),
     email: site.email,
     telephone: site.phone,
@@ -137,7 +136,7 @@ export function websiteJsonLd() {
     "@type": "ProfilePage",
     url: absoluteUrl("/"),
     name: `${site.name} · ${site.roles[0]}`,
-    description: site.seoDescription,
+    description: seoDescription(),
     inLanguage: "en",
     mainEntity: {
       "@type": "Person",

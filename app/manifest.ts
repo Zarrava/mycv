@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/data/site";
+import { seoDescription, site } from "@/data/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: `${site.name} · ${site.roles[0]}`,
     short_name: site.name,
-    description: site.seoDescription,
+    description: seoDescription(),
     start_url: "/",
     display: "standalone",
     background_color: "#12110f",

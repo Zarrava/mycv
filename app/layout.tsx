@@ -27,7 +27,11 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = rootMetadata();
+export const revalidate = 86400;
+
+export function generateMetadata(): Metadata {
+  return rootMetadata();
+}
 
 export const viewport: Viewport = {
   width: "device-width",

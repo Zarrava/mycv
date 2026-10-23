@@ -1,4 +1,4 @@
-import { site } from "@/data/site";
+import { bioParagraphs, experienceStat, site } from "@/data/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
@@ -19,14 +19,14 @@ export function About() {
             description="Retrieval, parsing, latency, and a service someone else can operate."
           />
           <div className="mt-6 space-y-4 text-base leading-relaxed text-muted">
-            {site.bio.map((paragraph) => (
+            {bioParagraphs().map((paragraph) => (
               <p key={paragraph.slice(0, 24)} className="text-pretty">
                 {paragraph}
               </p>
             ))}
           </div>
           <dl className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-            {site.stats.map((stat) => (
+            {[experienceStat(), ...site.stats].map((stat) => (
               <div key={stat.label} className="surface px-4 py-4">
                 <dt className="text-sm leading-snug text-muted">{stat.label}</dt>
                 <dd className="mt-2 font-display text-3xl tracking-tight sm:text-4xl">

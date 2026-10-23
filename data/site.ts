@@ -17,23 +17,16 @@ export const site = {
   portraitMark: "/images/profile-circle.jpg",
   portraitIsPhoto: true,
   resumeHref: "/Elijah-Olojede-CV.pdf",
-  yearsExperience: 4,
 
   roles: ["AI Native Developer", "Python Developer", "LangChain Developer"],
   headline: {
     before: "AI Native Developer building",
     accent: "LangChain and RAG systems",
   },
-  valueProposition:
-    "Over four years designing GenAI pipelines, LangChain agents, vector search, and FastAPI and Flask services that other people can run.",
-  seoDescription:
-    "Elijah Olojede is an AI Native Developer in Lagos. He builds LangChain agents, RAG systems, and production Python services.",
   availabilityLabel: "Remote experience",
 
-  bio: [
-    "I am an AI Native Developer and Python developer with over four years building GenAI solutions. The work centers on LangChain — agents, tools, and memory — plus vector databases such as Pinecone and FAISS, prompt engineering, and applications built on large language models.",
+  bioRest:
     "Across Primordial Technologies, Bajol Integrated Services, Helen La Costura, and GOMYCODE I have designed AI pipelines, integrated REST APIs, and deployed microservices with FastAPI and Flask. I am currently exploring semantic web technologies, OWL and RDF knowledge graphs, and multi-agent architectures for more context-aware reasoning.",
-  ],
 
   terminal: {
     prompt: "Ground this answer in the documents, and say so if they do not cover it.",
@@ -42,7 +35,6 @@ export const site = {
   },
 
   stats: [
-    { label: "Years building GenAI and Python", value: 4, suffix: "+" },
     { label: "Organizations", value: 4, suffix: "" },
     { label: "Case studies on this site", value: 5, suffix: "" },
     { label: "Core skill groups", value: 5, suffix: "" },
@@ -104,6 +96,45 @@ export const nav = [
   { href: "/#projects", id: "projects", label: "Projects" },
   { href: "/#contact", id: "contact", label: "Contact" },
 ] as const;
+
+/**
+ * First professional role on the CV: Bajol Integrated Services, February 2021.
+ * Full years are counted from this date, so the number advances on each anniversary.
+ */
+const CAREER_START = { year: 2021, month: 2, day: 1 };
+
+export function yearsExperience(now = new Date()) {
+  let years = now.getFullYear() - CAREER_START.year;
+  const month = now.getMonth() + 1;
+  const beforeAnniversary =
+    month < CAREER_START.month ||
+    (month === CAREER_START.month && now.getDate() < CAREER_START.day);
+  if (beforeAnniversary) years -= 1;
+  return Math.max(years, 0);
+}
+
+export function valueProposition(now = new Date()) {
+  return `Over ${yearsExperience(now)} years designing GenAI pipelines, LangChain agents, vector search, and FastAPI and Flask services that other people can run.`;
+}
+
+export function seoDescription(now = new Date()) {
+  return `Elijah Olojede is an AI Native Developer in Lagos with ${yearsExperience(now)}+ years building LangChain, RAG, and Python services.`;
+}
+
+export function bioParagraphs(now = new Date()) {
+  return [
+    `I am an AI Native Developer and Python developer with over ${yearsExperience(now)} years building GenAI solutions. The work centers on LangChain — agents, tools, and memory — plus vector databases such as Pinecone and FAISS, prompt engineering, and applications built on large language models.`,
+    site.bioRest,
+  ];
+}
+
+export function experienceStat(now = new Date()) {
+  return {
+    label: "Years building GenAI and Python",
+    value: yearsExperience(now),
+    suffix: "+",
+  };
+}
 
 export function headlineText() {
   return `${site.headline.before} ${site.headline.accent}`;

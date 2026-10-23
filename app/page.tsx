@@ -7,6 +7,8 @@ import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { WhatIBring } from "@/components/sections/WhatIBring";
 
+export const revalidate = 86400;
+
 export default function HomePage() {
   return (
     <>
