@@ -1,0 +1,70 @@
+/*
+  Design tokens
+  -------------
+  Change this file to retheme the site. Components read these variables
+  through Tailwind color utilities (bg-background, text-muted, border-border)
+  and a few custom properties for type, spacing, radius, and shadow.
+
+  Colors are stored as bare HSL channels: "H S% L%"
+  so utilities can add alpha, e.g. bg-background/80.
+
+  Dark mode is the default (class "dark" on <html>).
+  Light mode overrides the same names under .light.
+*/
+
+:root,
+.light {
+  --background: 40 28% 97%;
+  --foreground: 30 10% 14%;
+  --muted: 30 6% 38%;
+  --card: 40 33% 99%;
+  --card-foreground: 30 10% 14%;
+  --border: 36 14% 88%;
+  --ring: 34 28% 36%;
+  --primary: 34 28% 28%;
+  --primary-foreground: 40 30% 98%;
+  --accent: 34 32% 32%;
+  --accent-2: 32 16% 40%;
+  --success: 152 32% 28%;
+  --warning: 28 40% 32%;
+  --danger: 356 50% 40%;
+  --glow: 36 24% 62%;
+
+  --radius: 1rem;
+  --shadow-soft: 0 18px 50px -28px hsl(30 18% 18% / 0.28);
+  --shadow-glow: 0 0 0 1px hsl(36 24% 42% / 0.18), 0 22px 50px -24px hsl(34 22% 36% / 0.22);
+
+  --space-section: clamp(4.25rem, 2.8rem + 4vw, 7.5rem);
+  --content: 76rem;
+  --header: 4.25rem;
+
+  --text-display: clamp(2.35rem, 1.05rem + 5.4vw, 5.5rem);
+  --text-h2: clamp(1.85rem, 1.25rem + 2vw, 3.15rem);
+  --text-h3: clamp(1.2rem, 1.05rem + 0.5vw, 1.5rem);
+  --text-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.28rem);
+
+  color-scheme: light;
+}
+
+.dark {
+  --background: 40 6% 7%;
+  --foreground: 40 24% 93%;
+  --muted: 36 8% 66%;
+  --card: 36 7% 11%;
+  --card-foreground: 40 24% 93%;
+  --border: 36 8% 18%;
+  --ring: 38 28% 68%;
+  --primary: 38 32% 62%;
+  --primary-foreground: 36 14% 10%;
+  --accent: 38 28% 72%;
+  --accent-2: 36 18% 80%;
+  --success: 152 22% 64%;
+  --warning: 32 32% 66%;
+  --danger: 356 42% 72%;
+  --glow: 38 22% 58%;
+
+  --shadow-soft: 0 24px 60px -32px hsl(30 20% 2% / 0.8);
+  --shadow-glow: 0 0 0 1px hsl(38 24% 62% / 0.22), 0 22px 50px -28px hsl(36 20% 30% / 0.35);
+
+  color-scheme: dark;
+}
